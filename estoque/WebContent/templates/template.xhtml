@@ -10,8 +10,6 @@
 
 <h:head>
 <h:outputStylesheet name="main/css/showcase.css" />
-<link rel="icon" type="image/ico"
-	href="#{request.contextPath}/resources/main/imagens/favicon.ico" />
 <style type="text/css">
 .ui-layout-north {
 	z-index: 20 !important;
@@ -63,14 +61,14 @@ html {
 			<p:layoutUnit id="top" position="north" size="60">
 				<h:panelGrid width="100%" columns="2" cellpadding="5">
 					<h:panelGroup style="text-align:left">
-						<span class="titulo">Fratello</span>
-						<span class="titulo-descricao">- Sistema da Casa Espírita</span>
+						<span class="titulo">Estoque</span>
+						<span class="titulo-descricao">- Sistema de Estoque</span>
 					</h:panelGroup>
 					<h:panelGroup style="text-align:center">
 						<h:form>
 							<h:outputText
-								value="Olá, #{controladorLogin.usuario.pessoa.nome}. " />
-							<h:commandLink action="#{controladorLogin.sair()}" value="Sair"
+								value="Olá, #{loginBean.nome}. " />
+							<h:commandLink action="#{loginBean.sair()}" value="Sair"
 								style="text-decoration: underline;color:red;" />
 						</h:form>
 					</h:panelGroup>
@@ -79,7 +77,7 @@ html {
 
 			<p:layoutUnit id="bottom" position="south" size="30">
 				<div class="rodape">
-					secretaria_de_estudos_osgefic@
+					estoque@
 					<h:outputText value="#{now}">
 						<f:convertDateTime pattern="yyyy" type="date" />
 					</h:outputText>
@@ -95,6 +93,7 @@ html {
 				<p class="site-principal-conteudo-secao">
 					<ui:insert name="title" />
 				</p>
+				<h:messages />
 				<ui:insert name="content" />
 			</p:layoutUnit>
 

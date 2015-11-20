@@ -1,37 +1,90 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-	<title>Cadastrar usuário</title>
-</h:head>
-<h:body>
-	<h:form>
-		<h:messages />
-		<div style="text-align: right;">
-			<h:commandLink action="#{loginBean.sair()}" value="Sair"></h:commandLink>
-		</div>
-		<h3>Cadastrar usuário</h3>
-		<h:outputText value="Nome" />
-		<h:inputText id="nome" value="#{usuarioBean.nome}"></h:inputText>
-		<h:message for="nome"></h:message>
-		<br />
-		<br />
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
 
-		<h:outputText value="Email" />
-		<h:inputText id="email" value="#{usuarioBean.email}"></h:inputText>
-		<h:message for="email"></h:message>
-		<br />
-		<br />
+	<ui:define name="title">
+		<h:outputLabel value="Usuário" />
+	</ui:define>
+	<ui:define name="content">
+		<h:form id="formConsultaUsuario">
+			<p:fieldset>
+				<p:panelGrid id="camposPesquisa" style="width: 100%;">
+					<p:row>
+						<p:column style="width:5%;">
+							<h:outputLabel for="nomeUsuario" value="Nome:" />
+						</p:column>
+						<p:column>
+							<p:inputText id="nomeUsuario" value="#{usuarioBean.nome}"
+								maxlength="70" style="width: 300px;" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</p:fieldset>
 
-		<h:outputText value="Senha" />
-		<h:inputSecret id="senha" value="#{usuarioBean.senha}"></h:inputSecret>
-		<h:message for="senha"></h:message>
-		<br />
-		<br />
+			<center>
+				<p:separator />
 
-		<h:commandButton action="#{usuarioBean.cadastrarUsuario()}"
-			value="salvar"></h:commandButton>
-	</h:form>
-</h:body>
-</html>
+				<p:commandButton type="submit" value="Pesquisar" id="pesquisar"
+					action="#{usuarioBean.pesquisarUsuarios()}"
+					onstart="PF('bloqueio').show();" update="grupoPrincipal"
+					oncomplete="PF('bloqueio').hide();" />
+
+				<p:spacer width="10" />
+
+				<p:commandButton type="submit" value="Limpar" id="limpar"
+					actionListener="#{usuarioBean.limparDados()}"
+					onstart="PF('bloqueio').show();"
+					oncomplete="PF('bloqueio').hide();"
+					update=":formConsultaUsuario:camposPesquisa :grupoPrincipal" />
+
+				<p:spacer width="10" />
+
+				<p:commandButton type="submit" value="Cadastrar" id="cadastrar"
+					onstart="PF('bloqueio').show();" action="editarUsuario"
+					immediate="true" oncomplete="PF('bloqueio').hide();" />
+			</center>
+		</h:form>
+
+		<p:spacer height=" 10" />
+
+
+		<h:panelGroup id="grupoPrincipal">
+			<h:panelGrid style="width:100%" id="listagemUsuario"
+				rendered="#{usuarioBean.usuarios != null}">
+				<h:form id="formPrincipal">
+					<p:dataTable var="usuario" value="#{usuarioBean.usuarios}"
+						id="tabelaUsuarios" paginator="true" rows="10"
+						paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						rowsPerPageTemplate="5,10,15" paginatorAlwaysVisible="true"
+						paginatorPosition="bottom" lazy="true">
+						<f:facet name="header">Lista de Usuários Cadastrados</f:facet>
+						<p:column headerText="Nome" style="width:30%;">
+							<h:outputText value="#{usuario.nome}" />
+						</p:column>
+						<p:column headerText="Email" style="width:60%;">
+							<h:outputText value="#{usuario.email}" />
+						</p:column>
+
+						<p:column headerText="Ações" style="text-align:center;">
+							<p:commandLink title="Alterar" onstart="PF('bloqueio').show();"
+								oncomplete="PF('bloqueio').hide();" styleClass="fa fa-edit"
+								action="editarUsuario">
+								<f:setPropertyActionListener target="#{usuarioBean.usuario}"
+									value="#{usuario}" />
+							</p:commandLink>
+							<p:spacer width="10" />
+							<p:commandLink title="Excluir" onstart="PF('bloqueio').show();"
+								oncomplete="PF('bloqueio').hide();" styleClass="fa fa-remove">
+								<f:setPropertyActionListener target="#{usuarioBean.usuario}"
+									value="#{usuario}" />
+							</p:commandLink>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</h:panelGrid>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>

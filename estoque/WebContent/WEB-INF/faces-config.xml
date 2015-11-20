@@ -14,5 +14,13 @@
 			<from-outcome>login</from-outcome>
 			<to-view-id>publico/login.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>manterUsuario</from-outcome>
+			<to-view-id>restrito/usuario.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>editarUsuario</from-outcome>
+			<to-view-id>restrito/editar-usuario.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 </faces-config>

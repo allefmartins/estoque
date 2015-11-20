@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/templates/template.xhtml">
+
+	<ui:define name="title">
+		<h:outputLabel value="Cadastrar usuário" />
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<p:panelGrid id="panelIncluir" columns="2">
+				<h:outputText value="Nome" />
+				<h:inputText id="nome" value="#{usuarioBean.nome}"></h:inputText>
+				<h:outputText value="Email" />
+				<h:inputText id="email" value="#{usuarioBean.email}"></h:inputText>
+				<h:outputText value="Senha" />
+				<h:inputSecret id="senha" value="#{usuarioBean.senha}"></h:inputSecret>
+			</p:panelGrid>
+
+
+			<br/>
+
+			<p:commandButton action="#{usuarioBean.cadastrarUsuario()}"
+				value="salvar" />
+		</h:form>
+	</ui:define>
+</ui:composition>
