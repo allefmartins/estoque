@@ -1,0 +1,64 @@
+
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:form>
+		<p:growl autoUpdate="true" />
+
+		<p:panelMenu>
+			<p:submenu label="Administracao" collapsed="false">
+				<p:menuitem value="Pessoa" onstart="PF('bloqueio').show();"
+					oncomplete="PF('bloqueio').hide();"
+					outcome="/administracao/pessoa/pessoa.faces" icon="fa fa-user" />
+				<p:menuitem value="Usuario" onstart="PF('bloqueio').show();"
+					oncomplete="PF('bloqueio').hide();"
+					outcome="/administracao/usuario/usuario.faces"
+					icon="fa fa-unlock-alt" />
+				<p:menuitem value="Papel" onstart="PF('bloqueio').show();"
+					oncomplete="PF('bloqueio').hide();"
+					outcome="/administracao/papel/papel.faces" icon="fa fa-users" />
+				<p:menuitem value="Area" onstart="PF('bloqueio').show();"
+					oncomplete="PF('bloqueio').hide();"
+					outcome="/administracao/area/area.faces" icon="fa fa-users" />
+			</p:submenu>
+			<p:submenu label="Secretaria Estudos" collapsed="false">
+				<p:menuitem value="Curso" onstart="PF('bloqueio').show();"
+					oncomplete="PF('bloqueio').hide();"
+					url="/secretaria-estudos/curso/curso.faces" icon="fa fa-book" />
+				<p:menuitem value="Fase" onstart="PF('bloqueio').show();"
+					oncomplete="PF('bloqueio').hide();"
+					url="/secretaria-estudos/fase/fase.faces" icon="fa fa-refresh" />
+				<p:menuitem value="Cronograma" onstart="PF('bloqueio').show();"
+					oncomplete="PF('bloqueio').hide();"
+					url="/secretaria-estudos/cronograma/cronograma.faces"
+					icon="fa fa-calendar" />
+				<p:menuitem value="Aluno"
+					url="/secretaria-estudos/aluno/aluno.faces"
+					onstart="PF('bloqueio').show();"
+					oncomplete="PF('bloqueio').hide();" icon="fa fa-pencil" />
+				<p:menuitem value="Turma"
+					url="/secretaria-estudos/turma/turma.faces" icon="fa fa-folder-o" />
+			</p:submenu>
+			<p:submenu label="Secretaria" collapsed="false">
+				<p:menuitem value="Sócio" onstart="PF('bloqueio').show();"
+					oncomplete="PF('bloqueio').hide();"
+					url="/secretaria/socio/socio.faces" icon="fa fa-slideshare" />
+			</p:submenu>
+			<p:submenu label="Relatórios" collapsed="false">
+				<p:menuitem value="Mensalidades em Aberto"
+					url="/relatorios/relatorio-mensalidades-em-aberto.faces"
+					icon="fa fa-file-pdf-o" />
+				<p:menuitem value="Financeiro"
+					 icon="fa fa-file-pdf-o" />
+			</p:submenu>
+
+		</p:panelMenu>
+	</h:form>
+
+</ui:composition>
+
+

@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:view contentType="text/html">
+
+<h:head>
+<h:outputStylesheet name="main/css/showcase.css" />
+<link rel="icon" type="image/ico"
+	href="#{request.contextPath}/resources/main/imagens/favicon.ico" />
+<style type="text/css">
+.ui-layout-north {
+	z-index: 20 !important;
+	overflow: visible !important;;
+}
+
+.ui-layout-north .ui-layout-unit-content {
+	overflow: visible !important;
+}
+
+body {
+	background-color: #FFFFFF;
+}
+
+html {
+	height: 100% !important; 
+	border: medium none !important; 
+	padding: 0px !important; 
+	margin: 0px !important; 
+	overflow: visible !important;
+}
+
+.site-principal-conteudo-secao {
+	font-size: 18px;
+	font-weight: bold;
+	color: #428bca;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.titulo {
+	font-size: 38px;
+}
+
+.titulo-descricao {
+	font-size: 23px;
+	text-transform: uppercase;
+}
+
+.rodape {
+	font-size: 14px;
+	text-align: center;
+}
+</style>
+</h:head>
+
+	<h:body id="pagina">
+		<p:layout fullPage="true">
+			<p:layoutUnit id="top" position="north" size="60">
+				<h:panelGrid width="100%" columns="2" cellpadding="5">
+					<h:panelGroup style="text-align:left">
+						<span class="titulo">Fratello</span>
+						<span class="titulo-descricao">- Sistema da Casa Espírita</span>
+					</h:panelGroup>
+					<h:panelGroup style="text-align:center">
+						<h:form>
+							<h:outputText
+								value="Olá, #{controladorLogin.usuario.pessoa.nome}. " />
+							<h:commandLink action="#{controladorLogin.sair()}" value="Sair"
+								style="text-decoration: underline;color:red;" />
+						</h:form>
+					</h:panelGroup>
+				</h:panelGrid>
+			</p:layoutUnit>
+
+			<p:layoutUnit id="bottom" position="south" size="30">
+				<div class="rodape">
+					secretaria_de_estudos_osgefic@
+					<h:outputText value="#{now}">
+						<f:convertDateTime pattern="yyyy" type="date" />
+					</h:outputText>
+				</div>
+			</p:layoutUnit>
+
+			<p:layoutUnit id="left" position="west" resizable="true"
+				collapsible="true" header="Menu" minSize="200">
+				<ui:include src="menu.xhtml" />
+			</p:layoutUnit>
+
+			<p:layoutUnit id="center" position="center">
+				<p class="site-principal-conteudo-secao">
+					<ui:insert name="title" />
+				</p>
+				<ui:insert name="content" />
+			</p:layoutUnit>
+
+		</p:layout>
+
+		<h:outputScript library="main/js" name="sh.js" />
+		<h:outputScript library="main/js" name="jscodes.js" />
+		<script language="javascript">
+			SyntaxHighlighter.all();
+		</script>
+
+		<p:blockUI block=":pagina" widgetVar="bloqueio" appendTo="@(body)" />
+	</h:body>
+
+</f:view>
+</html>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Cadastrar usuário</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:messages />
+		<div style="text-align: right;">
+			<h:commandLink action="#{loginBean.sair()}" value="Sair"></h:commandLink>
+		</div>
+		<h3>Cadastrar usuário</h3>
+		<h:outputText value="Nome" />
+		<h:inputText id="nome" value="#{usuarioBean.nome}"></h:inputText>
+		<h:message for="nome"></h:message>
+		<br />
+		<br />
+
+		<h:outputText value="Email" />
+		<h:inputText id="email" value="#{usuarioBean.email}"></h:inputText>
+		<h:message for="email"></h:message>
+		<br />
+		<br />
+
+		<h:outputText value="Senha" />
+		<h:inputSecret id="senha" value="#{usuarioBean.senha}"></h:inputSecret>
+		<h:message for="senha"></h:message>
+		<br />
+		<br />
+
+		<h:commandButton action="#{usuarioBean.cadastrarUsuario()}"
+			value="salvar"></h:commandButton>
+	</h:form>
+</h:body>
+</html>
