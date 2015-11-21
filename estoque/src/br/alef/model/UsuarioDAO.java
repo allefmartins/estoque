@@ -61,4 +61,21 @@ public class UsuarioDAO {
 		}
 	}
 
+	public static void excluir(Usuario usuario) {
+		Connection con = null;
+		PreparedStatement ps = null;
+		try {
+			con = ConexaoBanco.obterConexao();
+			ps = con.prepareStatement("delete from usuario where id = ?");
+			ps.setInt(1, usuario.getId());
+
+			ps.executeUpdate();
+		} catch (SQLException ex) {
+			System.out.println("Login error -->" + ex.getMessage());
+		} finally {
+			ConexaoBanco.fecharConexao(con);
+		}
+
+	}
+
 }

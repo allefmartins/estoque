@@ -53,7 +53,7 @@
 
 		<h:panelGroup id="grupoPrincipal">
 			<h:panelGrid style="width:100%" id="listagemUsuario"
-				rendered="#{usuarioBean.usuarios != null}">
+				rendered="#{usuarioBean.usuarios != null and not empty usuarioBean.usuarios}">
 				<h:form id="formPrincipal">
 					<p:dataTable var="usuario" value="#{usuarioBean.usuarios}"
 						id="tabelaUsuarios" paginator="true" rows="10"
@@ -76,15 +76,17 @@
 									value="#{usuario}" />
 							</p:commandLink>
 							<p:spacer width="10" />
-							<p:commandLink title="Excluir" onstart="PF('bloqueio').show();"
-								oncomplete="PF('bloqueio').hide();" styleClass="fa fa-remove">
+							<p:commandLink ajax="true" title="Excluir" onstart="PF('bloqueio').show();"
+								oncomplete="PF('bloqueio').hide();PF('dialogExcluir').show();"
+								styleClass="fa fa-remove" update="excluir">
 								<f:setPropertyActionListener target="#{usuarioBean.usuario}"
-									value="#{usuario}" />
+									value="#{usuario}"/>
 							</p:commandLink>
 						</p:column>
 					</p:dataTable>
 				</h:form>
 			</h:panelGrid>
 		</h:panelGroup>
+		<ui:include src="dialogo-excluir-usuario.xhtml" />
 	</ui:define>
 </ui:composition>

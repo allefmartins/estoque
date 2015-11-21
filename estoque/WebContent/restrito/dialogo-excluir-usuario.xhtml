@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<p:confirmDialog id="excluir"
+		message="Você gostaria de Excluir o #{usuarioBean.usuario.nome}?"
+		header="Excluir" severity="alert" widgetVar="dialogExcluir"
+		modal="true" appendTo="@(body)" closable="false">
+		<h:form id="formExcluir">
+			<p:commandButton id="confirm" value="Sim"
+				onstart="PF('bloqueio').show();"
+				oncomplete="PF('dialogExcluir').hide();PF('bloqueio').hide();"
+				action="#{usuarioBean.excluir}"
+				styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
+				update="formPrincipal" />
+			<p:commandButton id="cancelar" value="Não" type="button"
+				onclick="PF('dialogExcluir').hide()"
+				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+		</h:form>
+	</p:confirmDialog>
+</h:body>
+</html>
