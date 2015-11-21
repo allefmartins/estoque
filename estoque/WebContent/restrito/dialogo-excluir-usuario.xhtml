@@ -16,7 +16,7 @@
 				oncomplete="PF('dialogExcluir').hide();PF('bloqueio').hide();"
 				action="#{usuarioBean.excluir}"
 				styleClass="ui-confirmdialog-yes" icon="ui-icon-check"
-				update="formPrincipal" />
+				update="formPrincipal" ajax="false"/>
 			<p:commandButton id="cancelar" value="Não" type="button"
 				onclick="PF('dialogExcluir').hide()"
 				styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
