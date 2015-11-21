@@ -44,13 +44,13 @@ public class UsuarioBean implements Serializable {
 	}
 
 	public void excluir() {
-		// UsuarioDAO.excluir(usuario);
+		UsuarioDAO.excluir(usuario);
 		FacesContext.getCurrentInstance().addMessage(
 				null,
 				new FacesMessage(FacesMessage.SEVERITY_INFO,
 						"Usuário excluído com sucesso!!", null));
 		limparDados();
-		
+
 	}
 
 	public void limparDados() {
